@@ -1,0 +1,14 @@
+*.suo
+*.swp
+*.bak
+*.user
+obj/
+[bB]in/
+SolutionItems/Assemblies/Toms.Net
+*.vbw
+*.CNT
+out.txt
+.*.swp
+*.exp
+*.lib
+*.pdb
