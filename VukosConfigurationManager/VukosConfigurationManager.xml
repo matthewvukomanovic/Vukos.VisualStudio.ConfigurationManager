@@ -4,6 +4,19 @@
         <name>VukosConfigurationManager</name>
     </assembly>
     <members>
+        <member name="T:VukosConfigurationManager.ConfigurationWindow">
+            <summary>
+            Interaction logic for ConfigurationWindow.xaml
+            </summary>
+            <summary>
+            ConfigurationWindow
+            </summary>
+        </member>
+        <member name="M:VukosConfigurationManager.ConfigurationWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="T:VukosConfigurationManager.ConfigurationPlugin">
             <summary>The object for implementing an Add-in.</summary>
             <seealso class='IDTExtensibility2' />
@@ -55,6 +68,97 @@
             <param term='varOut'>Parameters passed from the command handler to the caller.</param>
             <param term='handled'>Informs the caller if the command was handled or not.</param>
             <seealso class='Exec' />
+        </member>
+        <member name="F:VukosConfigurationManager.SolutionView._solution">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.SolutionView.Solution"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.SolutionView._projects">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.SolutionView.Projects"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.SolutionView._configurations">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.SolutionView.Configurations"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.SolutionView._activeConfiguration">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.SolutionView.ActiveConfiguration"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.SolutionView._platforms">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.SolutionView.Platforms"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.SolutionView._activePlatform">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.SolutionView.ActivePlatform"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.ProjectView._project">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.ProjectView.Project"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.ProjectView._solution">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.ProjectView.Solution"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.ProjectView._context">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.ProjectView.Context"/>
+            </summary>
+        </member>
+        <member name="T:Vukos.Common.Suppression">
+            <summary>
+            Used to suppress an action from occurring in code.
+            Generally used to stop an action from occurring twice.
+            Not Thread Safe.
+            </summary>
+        </member>
+        <member name="F:Vukos.Common.Suppression.DEFAULT_SuppressionCount">
+            <summary>
+            The default suppression count
+            </summary>
+        </member>
+        <member name="F:Vukos.Common.Suppression._suppressionCount">
+            <summary>
+            Used to store the current number of suppressions on the object.
+            </summary>
+        </member>
+        <member name="M:Vukos.Common.Suppression.Suppress">
+            <summary>
+            Increments the suppression count, this can be called multiple times.
+            A call to <see cref="M:Vukos.Common.Suppression.Unsuppress"/> should be made for every call to this method.
+            Not Thread Safe.
+            </summary>
+        </member>
+        <member name="M:Vukos.Common.Suppression.Unsuppress">
+            <summary>
+            Decrements the suppression count, this can be called multiple times.
+            A call to <see cref="M:Vukos.Common.Suppression.Suppress"/> should have been made first for every call to this method.
+            Not Thread Safe.
+            </summary>
+        </member>
+        <member name="M:Vukos.Common.Suppression.Run(System.Action)">
+            <summary>
+            Runs the specified action, only allowing it to be run once.
+            </summary>
+            <param name="singleUsageAction">The action which should only be run once at a time.</param>
+        </member>
+        <member name="P:Vukos.Common.Suppression.IsSuppressed">
+            <summary>
+            Gets a value indicating whether this instance is suppressed.
+            Not Thread Safe.
+            </summary>
+            <value>
+            	<c>true</c> if this instance is suppressed; otherwise, <c>false</c>.
+            </value>
         </member>
     </members>
 </doc>

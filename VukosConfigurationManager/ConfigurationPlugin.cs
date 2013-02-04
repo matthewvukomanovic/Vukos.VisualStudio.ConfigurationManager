@@ -89,6 +89,27 @@ namespace VukosConfigurationManager
                     //  safely ignore the exception.
                 }
 
+
+                //This try/catch block can be duplicated if you wish to add multiple commands to be handled by your Add-in,
+                //  just make sure you also update the QueryStatus/Exec method to include the new command names.
+                try
+                {
+                    //Add a command to the Commands collection:
+                    Command command = commands.AddNamedCommand2(_addInInstance, Constant_SelectBuild, "Select Build Configurations", "Window for configurations", true, 59, ref contextGUIDS, (int)vsCommandStatus.vsCommandStatusSupported + (int)vsCommandStatus.vsCommandStatusEnabled, (int)vsCommandStyle.vsCommandStylePictAndText, vsCommandControlType.vsCommandControlTypeButton);
+
+                    //Add a control for the command to the tools menu:
+                    if ((command != null) && (toolsPopup != null))
+                    {
+                        command.AddControl(toolsPopup.CommandBar, 1);
+                    }
+                }
+                catch (System.ArgumentException)
+                {
+                    //If we are here, then the exception is probably because a command with that name
+                    //  already exists. If so there is no need to recreate the command and we can 
+                    //  safely ignore the exception.
+                }
+
             }
         }
 
@@ -135,6 +156,7 @@ namespace VukosConfigurationManager
                 {
                     case Constant_LocalisedName_AllBuild:
                     case Constant_LocalisedName_NoneBuild:
+                    case Constant_LocalisedName_SelectBuild:
                         //TODO Check status
                         Solution solution = _applicationObject.Solution;
                         if (solution == null || solution.SolutionBuild == null || solution.SolutionBuild.ActiveConfiguration == null)
@@ -171,8 +193,27 @@ namespace VukosConfigurationManager
                         SetConfigurationValues(false);
                         handled = true;
                         return;
+                    case Constant_LocalisedName_SelectBuild:
+                        ShowConfigurationWindow();
+                        handled = true;
+                        return;
                 }
             }
+        }
+
+        private void ShowConfigurationWindow()
+        {
+            Solution solution = _applicationObject.Solution;
+            if (solution == null || solution.SolutionBuild == null || solution.SolutionBuild.ActiveConfiguration == null)
+            {
+                return;
+            }
+
+            var solutionView = new SolutionView() { Solution = solution };
+
+            var window = new ConfigurationWindow();
+            window.DataContext = solutionView;
+            window.Show();
         }
 
         private void SetConfigurationValues(bool buildProjects)
@@ -194,8 +235,11 @@ namespace VukosConfigurationManager
 
         private const string Constant_LocalisedName_AllBuild = Constant_Classname + "." + Constant_AllBuild;
         private const string Constant_LocalisedName_NoneBuild = Constant_Classname + "." + Constant_NoneBuild;
+        private const string Constant_LocalisedName_SelectBuild = Constant_Classname + "." + Constant_SelectBuild;
         private const string Constant_AllBuild = "AllBuild";
         private const string Constant_NoneBuild = "NoneBuild";
+        private const string Constant_SelectBuild = "SelectBuild";
+
 
         private DTE2 _applicationObject;
         private AddIn _addInInstance;
