@@ -175,12 +175,83 @@ namespace VukosConfigurationManager
         {
             if (_context != null && _solution != null)
             {
-                Project = _solution.Projects.Item(_context.ProjectName);
+                // Project.Kind == "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                Project = FindProject(_context.ProjectName, _solution.Projects);
             }
             else
             {
                 Project = null;
             }
+        }
+
+        private EnvDTE.Project FindProject(string projectName, Projects projects)
+        {
+            try
+            {
+                return projects.Item(projectName);
+            }
+            catch
+            {
+                return FindProjectIterrative(projectName, projects);
+            }
+
+        }
+
+        private EnvDTE.Project FindProjectIterrative(string projectName, Projects projects)
+        {
+            var enumerator = projects.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                Project p = (Project)enumerator.Current;
+                if (p.Kind == "{66A26722-8FB5-11D2-AA7E-00C04F688DDE}")
+                {
+                    if (p.UniqueName == projectName)
+                    {
+                        return p;
+                    }
+                }
+                else if (p.Kind == "{66A26720-8FB5-11D2-AA7E-00C04F688DDE}")
+                {
+                    Project found = FindProject(projectName, p.ProjectItems);
+                    if (found != null)
+                    {
+                        return found;
+                    }
+                }
+            }
+            return null;
+        }
+
+        private EnvDTE.Project FindProject(string projectName, ProjectItems projectItems)
+        {
+            if (projectItems == null)
+            {
+                return null;
+            }
+            var enumerator = projectItems.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                ProjectItem pi = (ProjectItem)enumerator.Current;
+                if (pi.SubProject != null)
+                {
+                    if (pi.Kind == "{66A26722-8FB5-11D2-AA7E-00C04F688DDE}")
+                    {
+                        if (pi.SubProject.UniqueName == projectName)
+                        {
+                            return pi.SubProject;
+                        }
+                    }
+                    if (pi.SubProject.Kind == "{66A26720-8FB5-11D2-AA7E-00C04F688DDE}")
+                    {
+                        Project found = FindProject(projectName, pi.SubProject.ProjectItems);
+                        if (found != null)
+                        {
+                            return found;
+                        }
+                    }
+                }
+            }
+            return null;
         }
 
         #endregion
