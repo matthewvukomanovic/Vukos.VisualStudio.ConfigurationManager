@@ -224,8 +224,6 @@ namespace VukosConfigurationManager
                     }
 
                     Configurations = configurations.Distinct();
-                    Platforms = platforms.Distinct();
-
                     _activeConfiguration = _solution.SolutionBuild.ActiveConfiguration.Name;
 
                     string active_config = (string)_solution.Properties.Item("ActiveConfig").Value;
@@ -237,6 +235,7 @@ namespace VukosConfigurationManager
                         if (splitConfig.Length == 2)
                         {
                             _activePlatform = splitConfig[1];
+                            platforms.Add(_activePlatform);
                             platformSet = true;
                         }
                     }
@@ -245,9 +244,7 @@ namespace VukosConfigurationManager
                         _activePlatform = null;
                     }
 
-                    foreach (Property property in _solution.Properties)
-                    {
-                    }
+                    Platforms = platforms.Distinct();
 
                     List<ProjectView> projects = new List<ProjectView>(_solution.SolutionBuild.ActiveConfiguration.SolutionContexts.Count);
                     foreach (SolutionContext solContext in _solution.SolutionBuild.ActiveConfiguration.SolutionContexts)
