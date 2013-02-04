@@ -213,16 +213,16 @@ namespace VukosConfigurationManager
 
         private Project FindProject(string projectName, Project project)
         {
-            if (project.Kind == "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}")
+            if (project.Kind == "{66A26720-8FB5-11D2-AA7E-00C04F688DDE}")
+            {
+                return FindProject(projectName, project.ProjectItems);
+            }
+            else
             {
                 if (project.UniqueName == projectName)
                 {
                     return project;
                 }
-            }
-            else if (project.Kind == "{66A26720-8FB5-11D2-AA7E-00C04F688DDE}")
-            {
-                return FindProject(projectName, project.ProjectItems);
             }
 
             return null;
