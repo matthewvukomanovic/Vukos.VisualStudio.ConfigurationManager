@@ -58,10 +58,15 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="IProjectView.cs" />
+    <Compile Include="ISolutionView.cs" />
     <Compile Include="ProjectView.cs" />
     <Compile Include="ConfigurationPlugin.cs" />
     <Compile Include="ConfigurationWindow.xaml.cs">
       <DependentUpon>ConfigurationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources.xaml.cs">
+      <DependentUpon>Resources.xaml</DependentUpon>
     </Compile>
     <Compile Include="SolutionView.cs" />
     <Compile Include="Suppression.cs" />
@@ -132,6 +137,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="ConfigurationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

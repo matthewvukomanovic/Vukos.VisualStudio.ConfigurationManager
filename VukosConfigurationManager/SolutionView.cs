@@ -10,7 +10,7 @@ using Vukos.Common;
 
 namespace VukosConfigurationManager
 {
-    public class SolutionView : INotifyPropertyChanged
+    public class SolutionView : ISolutionView
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -54,9 +54,9 @@ namespace VukosConfigurationManager
         /// <summary>
         /// A backing store for the property <see cref="Projects"/>
         /// </summary>
-        private IList<ProjectView> _projects;
+        private IList<IProjectView> _projects;
 
-        public IList<ProjectView> Projects
+        public IList<IProjectView> Projects
         {
             get { return _projects; }
             set
@@ -246,7 +246,7 @@ namespace VukosConfigurationManager
 
                     Platforms = platforms.Distinct();
 
-                    List<ProjectView> projects = new List<ProjectView>(_solution.SolutionBuild.ActiveConfiguration.SolutionContexts.Count);
+                    List<IProjectView> projects = new List<IProjectView>(_solution.SolutionBuild.ActiveConfiguration.SolutionContexts.Count);
                     foreach (SolutionContext solContext in _solution.SolutionBuild.ActiveConfiguration.SolutionContexts)
                     {
                         var projectView = new ProjectView() { Solution = _solution, Context = solContext };

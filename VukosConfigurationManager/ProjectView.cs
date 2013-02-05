@@ -8,7 +8,7 @@ using EnvDTE;
 
 namespace VukosConfigurationManager
 {
-    public class ProjectView : INotifyPropertyChanged
+    public class ProjectView : INotifyPropertyChanged, IProjectView
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
