@@ -4,17 +4,19 @@
         <name>VukosConfigurationManager</name>
     </assembly>
     <members>
-        <member name="T:VukosConfigurationManager.ConfigurationWindow">
+        <member name="F:VukosConfigurationManager.ProjectView._project">
             <summary>
-            Interaction logic for ConfigurationWindow.xaml
-            </summary>
-            <summary>
-            ConfigurationWindow
+            A backing store for the property <see cref="P:VukosConfigurationManager.ProjectView.Project"/>
             </summary>
         </member>
-        <member name="M:VukosConfigurationManager.ConfigurationWindow.InitializeComponent">
+        <member name="F:VukosConfigurationManager.ProjectView._solution">
             <summary>
-            InitializeComponent
+            A backing store for the property <see cref="P:VukosConfigurationManager.ProjectView.Solution"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.ProjectView._context">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.ProjectView.Context"/>
             </summary>
         </member>
         <member name="T:VukosConfigurationManager.ConfigurationPlugin">
@@ -69,6 +71,32 @@
             <param term='handled'>Informs the caller if the command was handled or not.</param>
             <seealso class='Exec' />
         </member>
+        <member name="T:VukosConfigurationManager.ConfigurationWindow">
+            <summary>
+            Interaction logic for ConfigurationWindow.xaml
+            </summary>
+            <summary>
+            ConfigurationWindow
+            </summary>
+        </member>
+        <member name="M:VukosConfigurationManager.ConfigurationWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:VukosConfigurationManager.Resources">
+            <summary>
+            Interaction logic for Resources.xaml
+            </summary>
+            <summary>
+            Resources
+            </summary>
+        </member>
+        <member name="M:VukosConfigurationManager.Resources.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="F:VukosConfigurationManager.SolutionView._solution">
             <summary>
             A backing store for the property <see cref="P:VukosConfigurationManager.SolutionView.Solution"/>
@@ -97,21 +125,6 @@
         <member name="F:VukosConfigurationManager.SolutionView._activePlatform">
             <summary>
             A backing store for the property <see cref="P:VukosConfigurationManager.SolutionView.ActivePlatform"/>
-            </summary>
-        </member>
-        <member name="F:VukosConfigurationManager.ProjectView._project">
-            <summary>
-            A backing store for the property <see cref="P:VukosConfigurationManager.ProjectView.Project"/>
-            </summary>
-        </member>
-        <member name="F:VukosConfigurationManager.ProjectView._solution">
-            <summary>
-            A backing store for the property <see cref="P:VukosConfigurationManager.ProjectView.Solution"/>
-            </summary>
-        </member>
-        <member name="F:VukosConfigurationManager.ProjectView._context">
-            <summary>
-            A backing store for the property <see cref="P:VukosConfigurationManager.ProjectView.Context"/>
             </summary>
         </member>
         <member name="T:Vukos.Common.Suppression">
@@ -159,19 +172,6 @@
             <value>
             	<c>true</c> if this instance is suppressed; otherwise, <c>false</c>.
             </value>
-        </member>
-        <member name="T:VukosConfigurationManager.Resources">
-            <summary>
-            Interaction logic for Resources.xaml
-            </summary>
-            <summary>
-            Resources
-            </summary>
-        </member>
-        <member name="M:VukosConfigurationManager.Resources.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
         </member>
     </members>
 </doc>

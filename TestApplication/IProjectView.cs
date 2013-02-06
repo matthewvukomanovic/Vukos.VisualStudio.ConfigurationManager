@@ -7,7 +7,6 @@ namespace VukosConfigurationManager
         string ConfigurationName { get; set; }
         string Name { get; }
         string PlatformName { get; }
-        event PropertyChangedEventHandler PropertyChanged;
         bool ShouldBuild { get; set; }
         bool ShouldDeploy { get; set; }
     }

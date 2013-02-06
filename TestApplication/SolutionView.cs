@@ -113,7 +113,27 @@ namespace TestApplication
 
         #endregion
 
+        #region Projects
 
-        //public IList<IProjectView> Projects
+        /// <summary>
+        /// A backing store for the property <see cref="Projects"/>
+        /// </summary>
+        private IList<IProjectView> _projects;
+
+        public IList<IProjectView> Projects
+        {
+            get { return _projects; }
+            set
+            {
+                //if(!object.ReferenceEquals(_projects, value))
+                if (_projects != value)
+                {
+                    _projects = value;
+                    this.RaisePropertyChanged(() => this.Projects);
+                }
+            }
+        }
+
+        #endregion
     }
 }

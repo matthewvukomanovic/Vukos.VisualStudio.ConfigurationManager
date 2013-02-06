@@ -10,6 +10,5 @@ namespace VukosConfigurationManager
         IEnumerable<string> Configurations { get; set; }
         IEnumerable<string> Platforms { get; set; }
         IList<IProjectView> Projects { get; set; }
-        event PropertyChangedEventHandler PropertyChanged;
     }
 }
