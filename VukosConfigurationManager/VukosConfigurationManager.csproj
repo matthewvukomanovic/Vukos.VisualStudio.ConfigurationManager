@@ -62,7 +62,7 @@
     <Compile Include="SolutionManagerCode\ISolutionView.cs" />
     <Compile Include="SolutionManagerCode\ProjectView.cs" />
     <Compile Include="ConfigurationPlugin.cs" />
-    <Compile Include="ConfigurationWindow.xaml.cs">
+    <Compile Include="SolutionManagerCode\ConfigurationWindow.xaml.cs">
       <DependentUpon>ConfigurationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SolutionManagerCode\ProjectViewBase.cs" />
@@ -140,7 +140,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="ConfigurationWindow.xaml">
+    <Page Include="SolutionManagerCode\ConfigurationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

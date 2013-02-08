@@ -172,7 +172,9 @@ namespace VukosConfigurationManager
                         var projectView = new ProjectView() { Solution = _solution, Context = solContext };
                         projects.Add(projectView);
                     }
+                    projects.Sort((x, y) => string.Compare(x.Name, y.Name));
                     Projects = projects;
+                    
                 }
             });
         }

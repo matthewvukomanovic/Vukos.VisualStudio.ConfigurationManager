@@ -25,11 +25,14 @@ namespace VukosConfigurationManager
             List<IProjectView> projects = new List<IProjectView>();
 
             Random rand = new Random(0);
+
+            string[] randomWords = new string[] { "y", "asdf", "hello", "something", "extra", "here", "today", "i", "dont", "know", "what", "to", "expect" };
+
             for (int i = 0; i < 20; i++)
             {
                 ProjectView p = new ProjectView();
                 p.ConfigurationName = "Debug";
-                p.NameSet = "Project " + i.ToString();
+                p.NameSet = "Project " + randomWords[rand.Next(randomWords.Length)] + " " + i.ToString();
                 p.PlatformNameSet = "x86";
                 p.ShouldBuild = (i % 2) == 0;
                 p.ShouldDeploy = (i % 3) == 0;

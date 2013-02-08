@@ -55,15 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ConfigurationWindow.xaml.cs">
-      <DependentUpon>ConfigurationWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ProjectView.cs" />
     <Compile Include="SolutionView.cs" />
-    <Page Include="ConfigurationWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>

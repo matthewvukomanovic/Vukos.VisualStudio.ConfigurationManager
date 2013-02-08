@@ -23,24 +23,5 @@ namespace VukosConfigurationManager
         {
             InitializeComponent();
         }
-
-        public void ListView_SelectionChanged(object sender, SelectionChangedEventArgs args)
-        {
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void activeSolutionConfig_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void activeSolutionPlatform_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }
