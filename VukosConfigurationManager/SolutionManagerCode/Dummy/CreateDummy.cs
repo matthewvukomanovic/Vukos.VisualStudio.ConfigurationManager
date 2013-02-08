@@ -31,7 +31,7 @@ namespace VukosConfigurationManager.Dummy
                 p.ShouldDeploy = (i % 3) == 0;
 
                 p.IsBuildableSet = rand.Next(10) != 0;
-                p.IsDeployableSet = false;
+                p.IsDeployableSet = rand.Next(10) == 0;
                 p.IsSelected = false;
                 projects.Add(p);
             }
@@ -39,16 +39,9 @@ namespace VukosConfigurationManager.Dummy
             return solution;
         }
 
-        public static void Show(ISolutionView solution)
-        {
-            VukosConfigurationManager.ConfigurationWindow w = new VukosConfigurationManager.ConfigurationWindow();
-            w.DataContext = solution;
-            w.Show();
-        }
-
         public static void ShowDummy()
         {
-            Show(CreateSolution());
+            VukosConfigurationManager.ConfigurationWindow.Show(CreateSolution());
         }
     }
 }

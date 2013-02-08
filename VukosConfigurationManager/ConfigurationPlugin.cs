@@ -239,7 +239,7 @@ namespace VukosConfigurationManager
 
             var solutionView = new SolutionView() { Solution = solution };
 
-            VukosConfigurationManager.Dummy.CreateDummy.Show(solutionView);
+            ConfigurationWindow.Show(solutionView);
         }
 
         private void ShowConfigurationWindowDummy()

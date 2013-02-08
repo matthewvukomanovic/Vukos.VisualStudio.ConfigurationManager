@@ -23,5 +23,12 @@ namespace VukosConfigurationManager
         {
             InitializeComponent();
         }
+
+        public static void Show(ISolutionView solution)
+        {
+            VukosConfigurationManager.ConfigurationWindow w = new VukosConfigurationManager.ConfigurationWindow();
+            w.DataContext = solution;
+            w.Show();
+        }
     }
 }
