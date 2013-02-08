@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Configurations" Height="436" Width="451">
     <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
     </Window.Resources>
         <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
@@ -24,7 +25,8 @@
             Grid.ColumnSpan="2" Grid.Row="2"
             SelectionChanged="ListView_SelectionChanged"
             ItemsSource="{Binding Path=Projects}"
-            Visibility="Visible" SelectionMode="Extended">
+            Visibility="Visible" SelectionMode="Extended"
+            Name="projectItemList">
             <ListView.View>
                 <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="All the projects for the solution">
                     <GridViewColumn Header="Project" Width="Auto" DisplayMemberBinding="{Binding Path=Name}"/>
@@ -33,25 +35,22 @@
                     <GridViewColumn Header="Build" Width="Auto">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox Margin="10,0" IsChecked="{Binding Path=ShouldBuild}"/>
+                                <CheckBox
+                                    Margin="10,0"
+                                    IsChecked="{Binding Path=ShouldBuild}"
+                                    Visibility="{Binding Path=IsBuildable, Converter={StaticResource BoolVisibilityConverter}}"
+                                    />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Deploy" Width="Auto">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox Margin="10,0" IsChecked="{Binding Path=ShouldDeploy}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Button" Width="Auto">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Margin="10,0" Text="{Binding Path=PlatformName}" />
-                                    <CheckBox Margin="10,0" IsChecked="{Binding Path=ShouldDeploy}"/>
-                                    <CheckBox Margin="10,0" IsChecked="{Binding Path=ShouldBuild}"/>
-                                </StackPanel>
+                                <CheckBox
+                                    Margin="10,0"
+                                    IsChecked="{Binding Path=ShouldDeploy}"
+                                    Visibility="{Binding Path=IsDeployable, Converter={StaticResource BoolVisibilityConverter}}"
+                                    />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

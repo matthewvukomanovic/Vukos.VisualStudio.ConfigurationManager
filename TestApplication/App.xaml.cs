@@ -6,7 +6,7 @@ using System.Linq;
 using System.Windows;
 using VukosConfigurationManager;
 
-namespace TestApplication
+namespace VukosConfigurationManager
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -24,14 +24,19 @@ namespace TestApplication
 
             List<IProjectView> projects = new List<IProjectView>();
 
-            for (int i = 0; i < 10; i++)
+            Random rand = new Random(0);
+            for (int i = 0; i < 20; i++)
             {
                 ProjectView p = new ProjectView();
                 p.ConfigurationName = "Debug";
-                p.Name = "Project " + i.ToString();
-                p.PlatformName = "x86";
+                p.NameSet = "Project " + i.ToString();
+                p.PlatformNameSet = "x86";
                 p.ShouldBuild = (i % 2) == 0;
                 p.ShouldDeploy = (i % 3) == 0;
+
+                p.IsBuildableSet = rand.Next(10) != 0;
+                p.IsDeployableSet = rand.Next(10) == 0;
+                p.IsSelected = false;
                 projects.Add(p);
             }
             solution.Projects = projects;

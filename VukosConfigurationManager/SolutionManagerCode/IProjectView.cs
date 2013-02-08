@@ -9,5 +9,8 @@ namespace VukosConfigurationManager
         string PlatformName { get; }
         bool ShouldBuild { get; set; }
         bool ShouldDeploy { get; set; }
+        bool IsBuildable { get; }
+        bool IsDeployable { get; }
+        bool IsSelected { get; set; }
     }
 }

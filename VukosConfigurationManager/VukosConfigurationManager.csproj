@@ -58,18 +58,22 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IProjectView.cs" />
-    <Compile Include="ISolutionView.cs" />
-    <Compile Include="ProjectView.cs" />
+    <Compile Include="SolutionManagerCode\IProjectView.cs" />
+    <Compile Include="SolutionManagerCode\ISolutionView.cs" />
+    <Compile Include="SolutionManagerCode\ProjectView.cs" />
     <Compile Include="ConfigurationPlugin.cs" />
     <Compile Include="ConfigurationWindow.xaml.cs">
       <DependentUpon>ConfigurationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SolutionManagerCode\ProjectViewBase.cs" />
     <Compile Include="Resources.xaml.cs">
       <DependentUpon>Resources.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SolutionView.cs" />
-    <Compile Include="Suppression.cs" />
+    <Compile Include="SolutionManagerCode\SolutionView.cs" />
+    <Compile Include="SolutionManagerCode\SolutionViewBase.cs" />
+    <Compile Include="SolutionManagerCode\Suppression.cs" />
+    <Compile Include="SolutionManagerCode\ToggleDelegateCommand.cs" />
+    <Compile Include="SolutionManagerCode\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="EnvDTE">

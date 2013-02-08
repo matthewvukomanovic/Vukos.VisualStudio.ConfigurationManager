@@ -4,6 +4,11 @@
         <name>VukosConfigurationManager</name>
     </assembly>
     <members>
+        <member name="F:VukosConfigurationManager.ProjectViewBase._isSelected">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.ProjectViewBase.IsSelected"/>
+            </summary>
+        </member>
         <member name="F:VukosConfigurationManager.ProjectView._project">
             <summary>
             A backing store for the property <see cref="P:VukosConfigurationManager.ProjectView.Project"/>
@@ -97,29 +102,29 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="F:VukosConfigurationManager.SolutionViewBase._projects">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.SolutionViewBase.Projects"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.SolutionViewBase._configurations">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.SolutionViewBase.Configurations"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.SolutionViewBase._platforms">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.SolutionViewBase.Platforms"/>
+            </summary>
+        </member>
         <member name="F:VukosConfigurationManager.SolutionView._solution">
             <summary>
             A backing store for the property <see cref="P:VukosConfigurationManager.SolutionView.Solution"/>
             </summary>
         </member>
-        <member name="F:VukosConfigurationManager.SolutionView._projects">
-            <summary>
-            A backing store for the property <see cref="P:VukosConfigurationManager.SolutionView.Projects"/>
-            </summary>
-        </member>
-        <member name="F:VukosConfigurationManager.SolutionView._configurations">
-            <summary>
-            A backing store for the property <see cref="P:VukosConfigurationManager.SolutionView.Configurations"/>
-            </summary>
-        </member>
         <member name="F:VukosConfigurationManager.SolutionView._activeConfiguration">
             <summary>
             A backing store for the property <see cref="P:VukosConfigurationManager.SolutionView.ActiveConfiguration"/>
-            </summary>
-        </member>
-        <member name="F:VukosConfigurationManager.SolutionView._platforms">
-            <summary>
-            A backing store for the property <see cref="P:VukosConfigurationManager.SolutionView.Platforms"/>
             </summary>
         </member>
         <member name="F:VukosConfigurationManager.SolutionView._activePlatform">
@@ -172,6 +177,11 @@
             <value>
             	<c>true</c> if this instance is suppressed; otherwise, <c>false</c>.
             </value>
+        </member>
+        <member name="F:VukosConfigurationManager.ToggleDelegateCommandBase._isEnabled">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.ToggleDelegateCommandBase.IsEnabled"/>
+            </summary>
         </member>
     </members>
 </doc>

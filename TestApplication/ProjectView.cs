@@ -6,21 +6,10 @@ using System.Linq.Expressions;
 using System.Text;
 using VukosConfigurationManager;
 
-namespace TestApplication
+namespace VukosConfigurationManager
 {
-    public sealed class ProjectView : IProjectView
+    public sealed class ProjectView : ProjectViewBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression)
-        {
-            PropertyChangedEventHandler temp = PropertyChanged;
-            if (temp != null)
-            {
-                temp(this, new PropertyChangedEventArgs(((MemberExpression)propertyExpression.Body).Member.Name));
-            }
-        }
-
         #region ConfigurationName
 
         /// <summary>
@@ -28,7 +17,7 @@ namespace TestApplication
         /// </summary>
         private string _configurationName;
 
-        public string ConfigurationName
+        public override string ConfigurationName
         {
             get { return _configurationName; }
             set
@@ -51,18 +40,22 @@ namespace TestApplication
         /// </summary>
         private string _name;
 
-        public string Name
+        public string NameSet
         {
             get { return _name; }
             set
             {
-                //if(!object.ReferenceEquals(_name, value))
                 if (_name != value)
                 {
                     _name = value;
                     this.RaisePropertyChanged(() => this.Name);
                 }
             }
+        }
+
+        public override string Name
+        {
+            get { return _name; }
         }
 
         #endregion
@@ -74,7 +67,12 @@ namespace TestApplication
         /// </summary>
         private string _platformName;
 
-        public string PlatformName
+        public override string PlatformName
+        {
+            get { return _platformName; }
+        }
+
+        public string PlatformNameSet
         {
             get { return _platformName; }
             set
@@ -97,7 +95,7 @@ namespace TestApplication
         /// </summary>
         private bool _shouldBuild;
 
-        public bool ShouldBuild
+        public override bool ShouldBuild
         {
             get { return _shouldBuild; }
             set
@@ -120,7 +118,7 @@ namespace TestApplication
         /// </summary>
         private bool _shouldDeploy;
 
-        public bool ShouldDeploy
+        public override bool ShouldDeploy
         {
             get { return _shouldDeploy; }
             set
@@ -136,5 +134,61 @@ namespace TestApplication
 
         #endregion
 
+        #region IsBuildable
+
+        /// <summary>
+        /// A backing store for the property <see cref="IsBuildable"/>
+        /// </summary>
+        private bool _isBuildable;
+
+        public override bool IsBuildable
+        {
+            get { return _isBuildable; }
+        }
+
+        public bool IsBuildableSet
+        {
+            get { return _isBuildable; }
+            set
+            {
+                //if(!object.ReferenceEquals(_isBuildable, value))
+                if (_isBuildable != value)
+                {
+                    _isBuildable = value;
+                    this.RaisePropertyChanged(() => this.IsBuildable);
+                }
+            }
+        }
+
+        #endregion
+
+        #region IsDeployable
+
+        /// <summary>
+        /// A backing store for the property <see cref="IsDeployable"/>
+        /// </summary>
+        private bool _isDeployable;
+
+        public override bool IsDeployable
+        {
+            get { return _isDeployable; }
+
+        }
+
+        public bool IsDeployableSet
+        {
+            get { return _isDeployable; }
+            set
+            {
+                //if(!object.ReferenceEquals(_isDeployable, value))
+                if (_isDeployable != value)
+                {
+                    _isDeployable = value;
+                    this.RaisePropertyChanged(() => this.IsDeployable);
+                }
+            }
+        }
+
+        #endregion
     }
 }

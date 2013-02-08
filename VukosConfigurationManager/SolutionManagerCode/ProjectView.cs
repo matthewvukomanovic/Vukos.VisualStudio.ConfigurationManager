@@ -8,19 +8,8 @@ using EnvDTE;
 
 namespace VukosConfigurationManager
 {
-    public class ProjectView : INotifyPropertyChanged, IProjectView
+    public class ProjectView : ProjectViewBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression)
-        {
-            PropertyChangedEventHandler temp = PropertyChanged;
-            if (temp != null)
-            {
-                temp(this, new PropertyChangedEventArgs(((MemberExpression)propertyExpression.Body).Member.Name));
-            }
-        }
-
         #region Properties
 
         #region Project
@@ -95,7 +84,7 @@ namespace VukosConfigurationManager
 
         #region Name
 
-        public string Name
+        public override string Name
         {
             get { return _project == null ? null : _project.Name; }
         }
@@ -104,7 +93,7 @@ namespace VukosConfigurationManager
 
         #region ShouldBuild
 
-        public bool ShouldBuild
+        public override bool ShouldBuild
         {
             get { return _context == null ? false : _context.ShouldBuild; }
             set
@@ -124,7 +113,7 @@ namespace VukosConfigurationManager
 
         #region ShouldDeploy
 
-        public bool ShouldDeploy
+        public override bool ShouldDeploy
         {
             get { return _context == null ? false : _context.ShouldDeploy; }
             set
@@ -142,9 +131,31 @@ namespace VukosConfigurationManager
 
         #endregion
 
+        #region IsDeployable
+
+        public override bool IsDeployable
+        {
+            get {
+                bool ret = _project == null ? false : _project.ConfigurationManager.ActiveConfiguration.IsDeployable;
+                return ret;
+            }
+        }
+
+        #endregion
+
+        #region IsBuildable
+
+        public override bool IsBuildable
+        {
+            get { return _project == null ? false : _project.ConfigurationManager.ActiveConfiguration.IsBuildable; }
+        }
+
+        #endregion
+
+
         #region ConfigurationName
 
-        public string ConfigurationName
+        public override string ConfigurationName
         {
             get { return _context == null ? null : _context.ConfigurationName; }
             set
@@ -164,7 +175,7 @@ namespace VukosConfigurationManager
 
         #region PlatformName
 
-        public string PlatformName
+        public override string PlatformName
         {
             get { return _context == null ? null : _context.PlatformName; }
         }

@@ -10,19 +10,8 @@ using Vukos.Common;
 
 namespace VukosConfigurationManager
 {
-    public class SolutionView : ISolutionView
+    public class SolutionView : SolutionViewBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression)
-        {
-            PropertyChangedEventHandler temp = PropertyChanged;
-            if (temp != null)
-            {
-                temp(this, new PropertyChangedEventArgs(((MemberExpression)propertyExpression.Body).Member.Name));
-            }
-        }
-
         #region Properties
 
         #region Solution
@@ -49,52 +38,6 @@ namespace VukosConfigurationManager
 
         #endregion
 
-        #region Projects
-
-        /// <summary>
-        /// A backing store for the property <see cref="Projects"/>
-        /// </summary>
-        private IList<IProjectView> _projects;
-
-        public IList<IProjectView> Projects
-        {
-            get { return _projects; }
-            set
-            {
-                //if(!object.ReferenceEquals(_projects, value))
-                if (_projects != value)
-                {
-                    _projects = value;
-                    this.RaisePropertyChanged(() => this.Projects);
-                }
-            }
-        }
-
-        #endregion
-
-        #region Configurations
-
-        /// <summary>
-        /// A backing store for the property <see cref="Configurations"/>
-        /// </summary>
-        private IEnumerable<string> _configurations;
-
-        public IEnumerable<string> Configurations
-        {
-            get { return _configurations; }
-            set
-            {
-                //if(!object.ReferenceEquals(_configurations, value))
-                if (_configurations != value)
-                {
-                    _configurations = value;
-                    this.RaisePropertyChanged(() => this.Configurations);
-                }
-            }
-        }
-
-        #endregion
-
         #region ActiveConfiguration
 
         /// <summary>
@@ -102,7 +45,7 @@ namespace VukosConfigurationManager
         /// </summary>
         private string _activeConfiguration;
 
-        public string ActiveConfiguration
+        public override string ActiveConfiguration
         {
             get { return _activeConfiguration; }
             set
@@ -120,29 +63,6 @@ namespace VukosConfigurationManager
 
         #endregion
 
-        #region Platforms
-
-        /// <summary>
-        /// A backing store for the property <see cref="Platforms"/>
-        /// </summary>
-        private IEnumerable<string> _platforms;
-
-        public IEnumerable<string> Platforms
-        {
-            get { return _platforms; }
-            set
-            {
-                //if(!object.ReferenceEquals(_configurations, value))
-                if (_platforms != value)
-                {
-                    _platforms = value;
-                    this.RaisePropertyChanged(() => this.Platforms);
-                }
-            }
-        }
-
-        #endregion
-
         #region ActivePlatform
 
         /// <summary>
@@ -150,7 +70,7 @@ namespace VukosConfigurationManager
         /// </summary>
         private string _activePlatform;
 
-        public string ActivePlatform
+        public override string ActivePlatform
         {
             get { return _activePlatform; }
             set
