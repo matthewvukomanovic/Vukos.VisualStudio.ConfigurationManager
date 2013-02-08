@@ -49,87 +49,35 @@ namespace VukosConfigurationManager
                 CommandBarControl toolsControl = menuBarCommandBar.Controls[toolsMenuName];
                 CommandBarPopup toolsPopup = (CommandBarPopup)toolsControl;
 
-                //This try/catch block can be duplicated if you wish to add multiple commands to be handled by your Add-in,
-                //  just make sure you also update the QueryStatus/Exec method to include the new command names.
-                try
+                Action<string, string, string> addCommand = (Name, ButtonText, ToolTip) =>
                 {
-                    //Add a command to the Commands collection:
-                    Command command = commands.AddNamedCommand2(_addInInstance, Constant_AllBuild, "Set All Projects to Build", "Adds all projects to be built", true, 59, ref contextGUIDS, (int)vsCommandStatus.vsCommandStatusSupported + (int)vsCommandStatus.vsCommandStatusEnabled, (int)vsCommandStyle.vsCommandStylePictAndText, vsCommandControlType.vsCommandControlTypeButton);
-
-                    //Add a control for the command to the tools menu:
-                    if ((command != null) && (toolsPopup != null))
+                    //This try/catch block can be duplicated if you wish to add multiple commands to be handled by your Add-in,
+                    //  just make sure you also update the QueryStatus/Exec method to include the new command names.
+                    try
                     {
-                        command.AddControl(toolsPopup.CommandBar, 1);
+                        //Add a command to the Commands collection:
+                        Command command = commands.AddNamedCommand2(_addInInstance, Name, ButtonText, ToolTip, true, 59, ref contextGUIDS, (int)vsCommandStatus.vsCommandStatusSupported + (int)vsCommandStatus.vsCommandStatusEnabled, (int)vsCommandStyle.vsCommandStylePictAndText, vsCommandControlType.vsCommandControlTypeButton);
+
+                        //Add a control for the command to the tools menu:
+                        if ((command != null) && (toolsPopup != null))
+                        {
+                            command.AddControl(toolsPopup.CommandBar, 1);
+                        }
                     }
-                }
-                catch (System.ArgumentException)
-                {
-                    //If we are here, then the exception is probably because a command with that name
-                    //  already exists. If so there is no need to recreate the command and we can 
-                    //  safely ignore the exception.
-                }
-
-                //This try/catch block can be duplicated if you wish to add multiple commands to be handled by your Add-in,
-                //  just make sure you also update the QueryStatus/Exec method to include the new command names.
-                try
-                {
-                    //Add a command to the Commands collection:
-                    Command command = commands.AddNamedCommand2(_addInInstance, Constant_NoneBuild, "No Building", "Removes all projects from being built", true, 59, ref contextGUIDS, (int)vsCommandStatus.vsCommandStatusSupported + (int)vsCommandStatus.vsCommandStatusEnabled, (int)vsCommandStyle.vsCommandStylePictAndText, vsCommandControlType.vsCommandControlTypeButton);
-
-                    //Add a control for the command to the tools menu:
-                    if ((command != null) && (toolsPopup != null))
+                    catch (System.ArgumentException)
                     {
-                        command.AddControl(toolsPopup.CommandBar, 1);
+                        //If we are here, then the exception is probably because a command with that name
+                        //  already exists. If so there is no need to recreate the command and we can 
+                        //  safely ignore the exception.
                     }
-                }
-                catch (System.ArgumentException)
-                {
-                    //If we are here, then the exception is probably because a command with that name
-                    //  already exists. If so there is no need to recreate the command and we can 
-                    //  safely ignore the exception.
-                }
+                };
 
-
-                //This try/catch block can be duplicated if you wish to add multiple commands to be handled by your Add-in,
-                //  just make sure you also update the QueryStatus/Exec method to include the new command names.
-                try
-                {
-                    //Add a command to the Commands collection:
-                    Command command = commands.AddNamedCommand2(_addInInstance, Constant_SelectBuild, "Select Build Configurations", "Window for configurations", true, 59, ref contextGUIDS, (int)vsCommandStatus.vsCommandStatusSupported + (int)vsCommandStatus.vsCommandStatusEnabled, (int)vsCommandStyle.vsCommandStylePictAndText, vsCommandControlType.vsCommandControlTypeButton);
-
-                    //Add a control for the command to the tools menu:
-                    if ((command != null) && (toolsPopup != null))
-                    {
-                        command.AddControl(toolsPopup.CommandBar, 1);
-                    }
-                }
-                catch (System.ArgumentException)
-                {
-                    //If we are here, then the exception is probably because a command with that name
-                    //  already exists. If so there is no need to recreate the command and we can 
-                    //  safely ignore the exception.
-                }
-
-                //This try/catch block can be duplicated if you wish to add multiple commands to be handled by your Add-in,
-                //  just make sure you also update the QueryStatus/Exec method to include the new command names.
-                try
-                {
-                    //Add a command to the Commands collection:
-                    Command command = commands.AddNamedCommand2(_addInInstance, Constant_ShowDummy, "Show Dummy Build Configurations", "Window for configurations", true, 59, ref contextGUIDS, (int)vsCommandStatus.vsCommandStatusSupported + (int)vsCommandStatus.vsCommandStatusEnabled, (int)vsCommandStyle.vsCommandStylePictAndText, vsCommandControlType.vsCommandControlTypeButton);
-
-                    //Add a control for the command to the tools menu:
-                    if ((command != null) && (toolsPopup != null))
-                    {
-                        command.AddControl(toolsPopup.CommandBar, 1);
-                    }
-                }
-                catch (System.ArgumentException)
-                {
-                    //If we are here, then the exception is probably because a command with that name
-                    //  already exists. If so there is no need to recreate the command and we can 
-                    //  safely ignore the exception.
-                }
-
+                addCommand(Constant_SelectBuild, "Select Build Configurations", "Window for configurations");
+                addCommand(Constant_AllBuild, "All Build", "Adds all projects to be built");
+                addCommand(Constant_NoneBuild, "No Build", "Removes all projects from being built");
+#if DEBUG
+                addCommand(Constant_ShowDummy, "Show Dummy Build Configurations", "Window for configurations");
+#endif
             }
         }
 
@@ -177,7 +125,6 @@ namespace VukosConfigurationManager
                     case Constant_LocalisedName_AllBuild:
                     case Constant_LocalisedName_NoneBuild:
                     case Constant_LocalisedName_SelectBuild:
-                        //TODO Check status
                         Solution solution = _applicationObject.Solution;
                         if (solution == null || solution.SolutionBuild == null || solution.SolutionBuild.ActiveConfiguration == null)
                         {
@@ -185,9 +132,11 @@ namespace VukosConfigurationManager
                         }
                         status = (vsCommandStatus)vsCommandStatus.vsCommandStatusSupported | vsCommandStatus.vsCommandStatusEnabled;
                         return;
+#if DEBUG
                     case Constant_LocalisedName_ShowDummy:
                         status = (vsCommandStatus)vsCommandStatus.vsCommandStatusSupported | vsCommandStatus.vsCommandStatusEnabled;
                         return;
+#endif
 
                 }
                 status = (vsCommandStatus)vsCommandStatus.vsCommandStatusInvisible | vsCommandStatus.vsCommandStatusUnsupported;
@@ -221,10 +170,12 @@ namespace VukosConfigurationManager
                         ShowConfigurationWindow();
                         handled = true;
                         return;
+#if DEBUG
                     case Constant_LocalisedName_ShowDummy:
                         ShowConfigurationWindowDummy();
                         handled = true;
                         return;
+#endif
                 }
             }
         }
@@ -267,12 +218,16 @@ namespace VukosConfigurationManager
         private const string Constant_LocalisedName_AllBuild = Constant_Classname + "." + Constant_AllBuild;
         private const string Constant_LocalisedName_NoneBuild = Constant_Classname + "." + Constant_NoneBuild;
         private const string Constant_LocalisedName_SelectBuild = Constant_Classname + "." + Constant_SelectBuild;
+#if DEBUG
         private const string Constant_LocalisedName_ShowDummy = Constant_Classname + "." + Constant_ShowDummy;
+#endif
+
         private const string Constant_AllBuild = "AllBuild";
         private const string Constant_NoneBuild = "NoneBuild";
         private const string Constant_SelectBuild = "SelectBuild";
+#if DEBUG
         private const string Constant_ShowDummy = "ShowDummy";
-
+#endif
 
         private DTE2 _applicationObject;
         private AddIn _addInInstance;
