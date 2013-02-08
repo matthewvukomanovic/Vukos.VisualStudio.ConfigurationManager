@@ -58,6 +58,9 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SolutionManagerCode\Dummy\CreateDummy.cs" />
+    <Compile Include="SolutionManagerCode\Dummy\ProjectViewDummy.cs" />
+    <Compile Include="SolutionManagerCode\Dummy\SolutionViewDummy.cs" />
     <Compile Include="SolutionManagerCode\IProjectView.cs" />
     <Compile Include="SolutionManagerCode\ISolutionView.cs" />
     <Compile Include="SolutionManagerCode\ProjectView.cs" />

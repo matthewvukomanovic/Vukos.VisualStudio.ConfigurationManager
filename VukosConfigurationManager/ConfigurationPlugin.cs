@@ -110,6 +110,26 @@ namespace VukosConfigurationManager
                     //  safely ignore the exception.
                 }
 
+                //This try/catch block can be duplicated if you wish to add multiple commands to be handled by your Add-in,
+                //  just make sure you also update the QueryStatus/Exec method to include the new command names.
+                try
+                {
+                    //Add a command to the Commands collection:
+                    Command command = commands.AddNamedCommand2(_addInInstance, Constant_ShowDummy, "Show Dummy Build Configurations", "Window for configurations", true, 59, ref contextGUIDS, (int)vsCommandStatus.vsCommandStatusSupported + (int)vsCommandStatus.vsCommandStatusEnabled, (int)vsCommandStyle.vsCommandStylePictAndText, vsCommandControlType.vsCommandControlTypeButton);
+
+                    //Add a control for the command to the tools menu:
+                    if ((command != null) && (toolsPopup != null))
+                    {
+                        command.AddControl(toolsPopup.CommandBar, 1);
+                    }
+                }
+                catch (System.ArgumentException)
+                {
+                    //If we are here, then the exception is probably because a command with that name
+                    //  already exists. If so there is no need to recreate the command and we can 
+                    //  safely ignore the exception.
+                }
+
             }
         }
 
@@ -165,6 +185,10 @@ namespace VukosConfigurationManager
                         }
                         status = (vsCommandStatus)vsCommandStatus.vsCommandStatusSupported | vsCommandStatus.vsCommandStatusEnabled;
                         return;
+                    case Constant_LocalisedName_ShowDummy:
+                        status = (vsCommandStatus)vsCommandStatus.vsCommandStatusSupported | vsCommandStatus.vsCommandStatusEnabled;
+                        return;
+
                 }
                 status = (vsCommandStatus)vsCommandStatus.vsCommandStatusInvisible | vsCommandStatus.vsCommandStatusUnsupported;
                 return;
@@ -197,6 +221,10 @@ namespace VukosConfigurationManager
                         ShowConfigurationWindow();
                         handled = true;
                         return;
+                    case Constant_LocalisedName_ShowDummy:
+                        ShowConfigurationWindowDummy();
+                        handled = true;
+                        return;
                 }
             }
         }
@@ -211,9 +239,12 @@ namespace VukosConfigurationManager
 
             var solutionView = new SolutionView() { Solution = solution };
 
-            var window = new ConfigurationWindow();
-            window.DataContext = solutionView;
-            window.Show();
+            VukosConfigurationManager.Dummy.CreateDummy.Show(solutionView);
+        }
+
+        private void ShowConfigurationWindowDummy()
+        {
+            VukosConfigurationManager.Dummy.CreateDummy.ShowDummy();
         }
 
         private void SetConfigurationValues(bool buildProjects)
@@ -236,9 +267,11 @@ namespace VukosConfigurationManager
         private const string Constant_LocalisedName_AllBuild = Constant_Classname + "." + Constant_AllBuild;
         private const string Constant_LocalisedName_NoneBuild = Constant_Classname + "." + Constant_NoneBuild;
         private const string Constant_LocalisedName_SelectBuild = Constant_Classname + "." + Constant_SelectBuild;
+        private const string Constant_LocalisedName_ShowDummy = Constant_Classname + "." + Constant_ShowDummy;
         private const string Constant_AllBuild = "AllBuild";
         private const string Constant_NoneBuild = "NoneBuild";
         private const string Constant_SelectBuild = "SelectBuild";
+        private const string Constant_ShowDummy = "ShowDummy";
 
 
         private DTE2 _applicationObject;

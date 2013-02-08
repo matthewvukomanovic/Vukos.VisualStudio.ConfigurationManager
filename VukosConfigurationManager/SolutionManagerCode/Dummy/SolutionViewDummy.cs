@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace VukosConfigurationManager
 {
-    public sealed class SolutionView : SolutionViewBase
+    public sealed class SolutionViewDummy : SolutionViewBase
     {
         #region ActiveConfiguration
 

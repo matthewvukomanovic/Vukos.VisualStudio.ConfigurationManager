@@ -170,6 +170,7 @@ namespace VukosConfigurationManager
                     foreach (SolutionContext solContext in _solution.SolutionBuild.ActiveConfiguration.SolutionContexts)
                     {
                         var projectView = new ProjectView() { Solution = _solution, Context = solContext };
+                        projectView.IsSelected = false;
                         projects.Add(projectView);
                     }
                     projects.Sort((x, y) => string.Compare(x.Name, y.Name));

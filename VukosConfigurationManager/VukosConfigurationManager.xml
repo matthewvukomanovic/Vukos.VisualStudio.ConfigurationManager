@@ -9,6 +9,66 @@
             A backing store for the property <see cref="P:VukosConfigurationManager.ProjectViewBase.IsSelected"/>
             </summary>
         </member>
+        <member name="F:VukosConfigurationManager.ProjectViewDummy._configurationName">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.ProjectViewDummy.ConfigurationName"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.ProjectViewDummy._name">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.ProjectViewDummy.Name"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.ProjectViewDummy._platformName">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.ProjectViewDummy.PlatformName"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.ProjectViewDummy._shouldBuild">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.ProjectViewDummy.ShouldBuild"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.ProjectViewDummy._shouldDeploy">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.ProjectViewDummy.ShouldDeploy"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.ProjectViewDummy._isBuildable">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.ProjectViewDummy.IsBuildable"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.ProjectViewDummy._isDeployable">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.ProjectViewDummy.IsDeployable"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.SolutionViewBase._projects">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.SolutionViewBase.Projects"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.SolutionViewBase._configurations">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.SolutionViewBase.Configurations"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.SolutionViewBase._platforms">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.SolutionViewBase.Platforms"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.SolutionViewDummy._activeConfiguration">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.SolutionViewDummy.ActiveConfiguration"/>
+            </summary>
+        </member>
+        <member name="F:VukosConfigurationManager.SolutionViewDummy._activePlatform">
+            <summary>
+            A backing store for the property <see cref="P:VukosConfigurationManager.SolutionViewDummy.ActivePlatform"/>
+            </summary>
+        </member>
         <member name="F:VukosConfigurationManager.ProjectView._project">
             <summary>
             A backing store for the property <see cref="P:VukosConfigurationManager.ProjectView.Project"/>
@@ -100,21 +160,6 @@
         <member name="M:VukosConfigurationManager.Resources.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="F:VukosConfigurationManager.SolutionViewBase._projects">
-            <summary>
-            A backing store for the property <see cref="P:VukosConfigurationManager.SolutionViewBase.Projects"/>
-            </summary>
-        </member>
-        <member name="F:VukosConfigurationManager.SolutionViewBase._configurations">
-            <summary>
-            A backing store for the property <see cref="P:VukosConfigurationManager.SolutionViewBase.Configurations"/>
-            </summary>
-        </member>
-        <member name="F:VukosConfigurationManager.SolutionViewBase._platforms">
-            <summary>
-            A backing store for the property <see cref="P:VukosConfigurationManager.SolutionViewBase.Platforms"/>
             </summary>
         </member>
         <member name="F:VukosConfigurationManager.SolutionView._solution">

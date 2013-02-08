@@ -8,7 +8,7 @@ using VukosConfigurationManager;
 
 namespace VukosConfigurationManager
 {
-    public sealed class ProjectView : ProjectViewBase
+    public sealed class ProjectViewDummy : ProjectViewBase
     {
         #region ConfigurationName
 
