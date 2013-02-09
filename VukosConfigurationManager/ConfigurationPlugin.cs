@@ -56,7 +56,7 @@ namespace VukosConfigurationManager
                     try
                     {
                         //Add a command to the Commands collection:
-                        Command command = commands.AddNamedCommand2(_addInInstance, Name, ButtonText, ToolTip, true, 59, ref contextGUIDS, (int)vsCommandStatus.vsCommandStatusSupported + (int)vsCommandStatus.vsCommandStatusEnabled, (int)vsCommandStyle.vsCommandStylePictAndText, vsCommandControlType.vsCommandControlTypeButton);
+                        Command command = commands.AddNamedCommand2(_addInInstance, Name, ButtonText, ToolTip, false, 1, ref contextGUIDS, (int)vsCommandStatus.vsCommandStatusSupported + (int)vsCommandStatus.vsCommandStatusEnabled, (int)vsCommandStyle.vsCommandStylePictAndText, vsCommandControlType.vsCommandControlTypeButton);
 
                         //Add a control for the command to the tools menu:
                         if ((command != null) && (toolsPopup != null))

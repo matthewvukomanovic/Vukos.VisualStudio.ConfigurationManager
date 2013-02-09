@@ -149,19 +149,6 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:VukosConfigurationManager.Resources">
-            <summary>
-            Interaction logic for Resources.xaml
-            </summary>
-            <summary>
-            Resources
-            </summary>
-        </member>
-        <member name="M:VukosConfigurationManager.Resources.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
         <member name="F:VukosConfigurationManager.SolutionView._solution">
             <summary>
             A backing store for the property <see cref="P:VukosConfigurationManager.SolutionView.Solution"/>

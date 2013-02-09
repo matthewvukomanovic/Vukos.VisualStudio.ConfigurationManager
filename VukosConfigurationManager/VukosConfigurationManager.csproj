@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -69,9 +70,6 @@
       <DependentUpon>ConfigurationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SolutionManagerCode\ProjectViewBase.cs" />
-    <Compile Include="Resources.xaml.cs">
-      <DependentUpon>Resources.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SolutionManagerCode\SolutionView.cs" />
     <Compile Include="SolutionManagerCode\SolutionViewBase.cs" />
     <Compile Include="SolutionManagerCode\Suppression.cs" />
@@ -135,10 +133,11 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\1.bmp" />
     <Content Include="VukosConfigurationManager.AddIn">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="\\wsqbcsfsc21\User%24\vukomanm\My Documents\Visual Studio 2012\Addins\VukosConfigurationManager - For Testing.AddIn">
+    <Content Include="C:\Users\Matthew Vukomanovic\Documents\Visual Studio 2012\Addins\VukosConfigurationManager  - For Testing.AddIn">
       <Link>VukosConfigurationManager - For Testing.AddIn</Link>
     </Content>
   </ItemGroup>
@@ -147,10 +146,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
   <PropertyGroup>
