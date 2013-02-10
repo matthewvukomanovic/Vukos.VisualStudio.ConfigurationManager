@@ -6,6 +6,9 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
     </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
+    </Window.CommandBindings>
     <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

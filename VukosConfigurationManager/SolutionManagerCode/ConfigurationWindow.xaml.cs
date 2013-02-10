@@ -30,5 +30,17 @@ namespace VukosConfigurationManager
             w.DataContext = solution;
             w.Show();
         }
+
+        private void Close_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+            e.Handled = true;
+        }
+
+        private void Close_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            e.Handled = true;
+            this.Close();
+        }
     }
 }
