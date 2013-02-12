@@ -8,6 +8,7 @@ using EnvDTE;
 using VukosConfigurationManager;
 using Vukos.Common;
 using System.Windows.Input;
+using System.Threading.Tasks;
 
 namespace VukosConfigurationManager
 {
@@ -126,7 +127,7 @@ namespace VukosConfigurationManager
                 var configuration = _solution.SolutionBuild.SolutionConfigurations.Item(_selectedConfiguration);
                 if (configuration != null)
                 {
-                    configuration.Activate();
+                    Task.Factory.StartNew(configuration.Activate);
                 }
             }
         }
