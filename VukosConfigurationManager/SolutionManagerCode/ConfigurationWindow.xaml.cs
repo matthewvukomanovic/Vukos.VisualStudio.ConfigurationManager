@@ -26,8 +26,7 @@ namespace VukosConfigurationManager
 
         public static void Show(ISolutionView solution)
         {
-            VukosConfigurationManager.ConfigurationWindow w = new VukosConfigurationManager.ConfigurationWindow();
-            w.DataContext = solution;
+            VukosConfigurationManager.ConfigurationWindow w = new VukosConfigurationManager.ConfigurationWindow() { DataContext = solution };
             w.Show();
         }
 
