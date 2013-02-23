@@ -76,7 +76,7 @@ namespace VukosConfigurationManager
                 addCommand(Constant_AllBuild, "All Build", "Adds all projects to be built");
                 addCommand(Constant_NoneBuild, "No Build", "Removes all projects from being built");
 #if DEBUG
-                addCommand(Constant_ShowDummy, "Show Dummy Build Configurations", "Window for configurations");
+                //addCommand(Constant_ShowDummy, "Show Dummy Build Configurations", "Window for configurations");
 #endif
             }
         }
