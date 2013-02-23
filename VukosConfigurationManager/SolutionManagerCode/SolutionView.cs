@@ -7,12 +7,29 @@ using System.Linq.Expressions;
 using EnvDTE;
 using VukosConfigurationManager;
 using Vukos.Common;
+using System.Windows.Input;
 
 namespace VukosConfigurationManager
 {
     public class SolutionView : SolutionViewBase
     {
+
+        public SolutionView() : base()
+        {
+            _setActiveConfiguration = new ToggleDelegateCommand(SetActiveConfigurationMethod);
+        }
+
         #region Properties
+
+        public override System.Windows.Input.ICommand SetActiveConfiguration
+        {
+            get
+            {
+                return _setActiveConfiguration;
+            }
+        }
+
+        private readonly ICommand _setActiveConfiguration;
 
         #region Solution
 
@@ -30,7 +47,7 @@ namespace VukosConfigurationManager
                 if (_solution != value)
                 {
                     _solution = value;
-                    RefreshAllSolutionValues();
+                    RefreshAllSolutionValues(true);
                     this.RaisePropertyChanged(() => this.Solution);
                 }
             }
@@ -38,25 +55,24 @@ namespace VukosConfigurationManager
 
         #endregion
 
-        #region ActiveConfiguration
+        #region SelectedConfiguration
 
         /// <summary>
-        /// A backing store for the property <see cref="ActiveConfiguration"/>
+        /// A backing store for the property <see cref="SelectedConfiguration"/>
         /// </summary>
-        private string _activeConfiguration;
+        private string _selectedConfiguration;
 
-        public override string ActiveConfiguration
+        public override string SelectedConfiguration
         {
-            get { return _activeConfiguration; }
+            get { return _selectedConfiguration; }
             set
             {
                 //if(!object.ReferenceEquals(_activeConfiguration, value))
-                if (_activeConfiguration != value)
+                if (_selectedConfiguration != value)
                 {
-                    _activeConfiguration = value;
-                    this.RaisePropertyChanged(() => this.ActiveConfiguration);
-                    SetActiveConfiguration();
-                    RefreshAllSolutionValues();
+                    _selectedConfiguration = value;
+                    this.RaisePropertyChanged(() => this.SelectedConfiguration);
+                    RefreshAllSolutionValues(false);
                 }
             }
         }
@@ -88,7 +104,7 @@ namespace VukosConfigurationManager
 
         private void SetActivePlatform()
         {
-            if (_solution == null || _solution.SolutionBuild == null || _activeConfiguration == null)
+            if (_solution == null || _solution.SolutionBuild == null || _selectedConfiguration == null)
             {
                 return;
             }
@@ -98,16 +114,16 @@ namespace VukosConfigurationManager
             }
         }
 
-        private void SetActiveConfiguration()
+        private void SetActiveConfigurationMethod()
         {
-            if (_solution == null || _solution.SolutionBuild == null || _activeConfiguration == null)
+            if (_solution == null || _solution.SolutionBuild == null || _selectedConfiguration == null)
             {
                 return;
             }
             else
             {
                 // Determine how to change the currently active configuration
-                var configuration = _solution.SolutionBuild.SolutionConfigurations.Item(_activeConfiguration);
+                var configuration = _solution.SolutionBuild.SolutionConfigurations.Item(_selectedConfiguration);
                 if (configuration != null)
                 {
                     configuration.Activate();
@@ -119,14 +135,14 @@ namespace VukosConfigurationManager
 
         Suppression refreshSuppression = new Suppression();
 
-        private void RefreshAllSolutionValues()
+        private void RefreshAllSolutionValues(bool refreshAll)
         {
             refreshSuppression.Run(() =>
             {
                 if (_solution == null || _solution.SolutionBuild == null || _solution.SolutionBuild.ActiveConfiguration == null)
                 {
                     Projects = null;
-                    ActiveConfiguration = null;
+                    SelectedConfiguration = null;
                     Configurations = null;
                     return;
                 }
@@ -144,7 +160,10 @@ namespace VukosConfigurationManager
                     }
 
                     Configurations = configurations.Distinct();
-                    _activeConfiguration = _solution.SolutionBuild.ActiveConfiguration.Name;
+                    if (refreshAll)
+                    {
+                        _selectedConfiguration = _solution.SolutionBuild.ActiveConfiguration.Name;
+                    }
 
                     string active_config = (string)_solution.Properties.Item("ActiveConfig").Value;
 
@@ -166,8 +185,15 @@ namespace VukosConfigurationManager
 
                     Platforms = platforms.Distinct();
 
-                    List<IProjectView> projects = new List<IProjectView>(_solution.SolutionBuild.ActiveConfiguration.SolutionContexts.Count);
-                    foreach (SolutionContext solContext in _solution.SolutionBuild.ActiveConfiguration.SolutionContexts)
+                    SolutionConfiguration configuration = _solution.SolutionBuild.SolutionConfigurations.Item(_selectedConfiguration);
+                    if (configuration == null || configuration.SolutionContexts == null)
+                    {
+                        Projects = null;
+                        return;
+                    }
+
+                    List<IProjectView> projects = new List<IProjectView>(configuration.SolutionContexts.Count);
+                    foreach (SolutionContext solContext in configuration.SolutionContexts)
                     {
                         var projectView = new ProjectView() { Solution = _solution, Context = solContext };
                         projectView.IsSelected = false;
@@ -175,7 +201,6 @@ namespace VukosConfigurationManager
                     }
                     projects.Sort((x, y) => string.Compare(x.Name, y.Name));
                     Projects = projects;
-                    
                 }
             });
         }

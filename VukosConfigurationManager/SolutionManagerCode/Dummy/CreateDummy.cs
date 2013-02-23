@@ -10,7 +10,7 @@ namespace VukosConfigurationManager.Dummy
         public static ISolutionView CreateSolution()
         {
             SolutionViewDummy solution = new SolutionViewDummy();
-            solution.ActiveConfiguration = "Debug";
+            solution.SelectedConfiguration = "Debug";
             solution.Configurations = new List<string>() { "Debug", "Release" };
             solution.ActivePlatform = "Mixed CPUs";
             solution.Platforms = new List<string>() { "Mixed CPUs", "x86", "64" };

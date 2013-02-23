@@ -15,11 +15,11 @@ namespace VukosConfigurationManager
         #region ActiveConfiguration
 
         /// <summary>
-        /// A backing store for the property <see cref="ActiveConfiguration"/>
+        /// A backing store for the property <see cref="SelectedConfiguration"/>
         /// </summary>
         private string _activeConfiguration;
 
-        public override string ActiveConfiguration
+        public override string SelectedConfiguration
         {
             get { return _activeConfiguration; }
             set
@@ -28,12 +28,17 @@ namespace VukosConfigurationManager
                 if (_activeConfiguration != value)
                 {
                     _activeConfiguration = value;
-                    this.RaisePropertyChanged(() => this.ActiveConfiguration);
+                    this.RaisePropertyChanged(() => this.SelectedConfiguration);
                 }
             }
         }
 
         #endregion
+
+        public override ICommand SetActiveConfiguration
+        {
+            get { return null; }
+        }
 
         #region ActivePlatform
 

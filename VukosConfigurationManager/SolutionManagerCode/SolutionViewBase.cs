@@ -14,7 +14,9 @@ namespace VukosConfigurationManager
             ToggleDeploy = new ToggleDelegateCommand(ToggleSelectedDeploys);
         }
 
-        public abstract string ActiveConfiguration { get; set; }
+        public abstract ICommand SetActiveConfiguration { get; }
+
+        public abstract string SelectedConfiguration { get; set; }
         public abstract string ActivePlatform { get; set; }
 
         #region Projects
