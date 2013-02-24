@@ -12,3 +12,6 @@ out.txt
 *.exp
 *.lib
 *.pdb
+localdocuments/
+localaddin/
+localkeys/
