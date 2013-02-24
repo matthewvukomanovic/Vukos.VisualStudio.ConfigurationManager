@@ -18,7 +18,7 @@ namespace Vukos.VisualStudio.ConfigurationManager
         {
         }
 
-        SolutionEvents solutionEvents;
+        SolutionEvents _solutionEvents;
 
         /// <summary>Implements the OnConnection method of the IDTExtensibility2 interface. Receives notification that the Add-in is being loaded.</summary>
         /// <param term='application'>Root object of the host application.</param>
@@ -29,34 +29,33 @@ namespace Vukos.VisualStudio.ConfigurationManager
         {
             _applicationObject = (DTE2)application;
             _addInInstance = (AddIn)addInInst;
-            solutionEvents = _applicationObject.Events.SolutionEvents;
-            solutionEvents.AfterClosing += () =>
-            {
-                _applicationObject.ExecuteCommand("View.StartPage");
-            };
+
+            // TODO: This section here should be made as an option since not everyone might want the start page displaying again when the solution is closed.
+            _solutionEvents = _applicationObject.Events.SolutionEvents;
+            _solutionEvents.AfterClosing += () => _applicationObject.ExecuteCommand("View.StartPage");
 
             if (connectMode == ext_ConnectMode.ext_cm_UISetup)
             {
-                object[] contextGUIDS = new object[] { };
-                Commands2 commands = (Commands2)_applicationObject.Commands;
-                string toolsMenuName = "Tools";
+                var contextGuids = new object[] { };
+                var commands = (Commands2)_applicationObject.Commands;
+                const string toolsMenuName = "Tools";
 
                 //Place the command on the tools menu.
                 //Find the MenuBar command bar, which is the top-level command bar holding all the main menu items:
-                Microsoft.VisualStudio.CommandBars.CommandBar menuBarCommandBar = ((Microsoft.VisualStudio.CommandBars.CommandBars)_applicationObject.CommandBars)["MenuBar"];
+                var menuBarCommandBar = ((Microsoft.VisualStudio.CommandBars.CommandBars)_applicationObject.CommandBars)["MenuBar"];
 
                 //Find the Tools command bar on the MenuBar command bar:
-                CommandBarControl toolsControl = menuBarCommandBar.Controls[toolsMenuName];
-                CommandBarPopup toolsPopup = (CommandBarPopup)toolsControl;
+                var toolsControl = menuBarCommandBar.Controls[toolsMenuName];
+                var toolsPopup = (CommandBarPopup)toolsControl;
 
-                Action<string, string, string> addCommand = (Name, ButtonText, ToolTip) =>
+                Action<string, string, string> addCommand = (name, buttonText, toolTip) =>
                 {
                     //This try/catch block can be duplicated if you wish to add multiple commands to be handled by your Add-in,
                     //  just make sure you also update the QueryStatus/Exec method to include the new command names.
                     try
                     {
                         //Add a command to the Commands collection:
-                        Command command = commands.AddNamedCommand2(_addInInstance, Name, ButtonText, ToolTip, false, 1, ref contextGUIDS, (int)vsCommandStatus.vsCommandStatusSupported + (int)vsCommandStatus.vsCommandStatusEnabled, (int)vsCommandStyle.vsCommandStylePictAndText, vsCommandControlType.vsCommandControlTypeButton);
+                        var command = commands.AddNamedCommand2(_addInInstance, name, buttonText, toolTip, false, 1, ref contextGuids, (int)vsCommandStatus.vsCommandStatusSupported + (int)vsCommandStatus.vsCommandStatusEnabled, (int)vsCommandStyle.vsCommandStylePictAndText, vsCommandControlType.vsCommandControlTypeButton);
 
                         //Add a control for the command to the tools menu:
                         if ((command != null) && (toolsPopup != null))
@@ -72,9 +71,9 @@ namespace Vukos.VisualStudio.ConfigurationManager
                     }
                 };
 
-                addCommand(Constant_SelectBuild, "Select Build Configurations", "Window for configurations");
-                addCommand(Constant_AllBuild, "All Build", "Adds all projects to be built");
-                addCommand(Constant_NoneBuild, "No Build", "Removes all projects from being built");
+                addCommand(ConstantSelectBuild, "Select Build Configurations", "Window for configurations");
+                addCommand(ConstantAllBuild, "All Build", "Adds all projects to be built");
+                addCommand(ConstantNoneBuild, "No Build", "Removes all projects from being built");
 #if DEBUG
                 //addCommand(Constant_ShowDummy, "Show Dummy Build Configurations", "Window for configurations");
 #endif
@@ -122,9 +121,9 @@ namespace Vukos.VisualStudio.ConfigurationManager
             {
                 switch (commandName)
                 {
-                    case Constant_LocalisedName_AllBuild:
-                    case Constant_LocalisedName_NoneBuild:
-                    case Constant_LocalisedName_SelectBuild:
+                    case ConstantLocalisedNameAllBuild:
+                    case ConstantLocalisedNameNoneBuild:
+                    case ConstantLocalisedNameSelectBuild:
                         Solution solution = _applicationObject.Solution;
                         if (solution == null || solution.SolutionBuild == null || solution.SolutionBuild.ActiveConfiguration == null)
                         {
@@ -133,7 +132,7 @@ namespace Vukos.VisualStudio.ConfigurationManager
                         status = (vsCommandStatus)vsCommandStatus.vsCommandStatusSupported | vsCommandStatus.vsCommandStatusEnabled;
                         return;
 #if DEBUG
-                    case Constant_LocalisedName_ShowDummy:
+                    case ConstantLocalisedNameShowDummy:
                         status = (vsCommandStatus)vsCommandStatus.vsCommandStatusSupported | vsCommandStatus.vsCommandStatusEnabled;
                         return;
 #endif
@@ -158,20 +157,20 @@ namespace Vukos.VisualStudio.ConfigurationManager
             {
                 switch (commandName)
                 {
-                    case Constant_LocalisedName_AllBuild:
+                    case ConstantLocalisedNameAllBuild:
                         SetConfigurationValues(true);
                         handled = true;
                         return;
-                    case Constant_LocalisedName_NoneBuild:
+                    case ConstantLocalisedNameNoneBuild:
                         SetConfigurationValues(false);
                         handled = true;
                         return;
-                    case Constant_LocalisedName_SelectBuild:
+                    case ConstantLocalisedNameSelectBuild:
                         ShowConfigurationWindow();
                         handled = true;
                         return;
 #if DEBUG
-                    case Constant_LocalisedName_ShowDummy:
+                    case ConstantLocalisedNameShowDummy:
                         ShowConfigurationWindowDummy();
                         handled = true;
                         return;
@@ -213,20 +212,20 @@ namespace Vukos.VisualStudio.ConfigurationManager
             }
         }
 
-        private const string Constant_Classname = "Vukos.VisualStudio.ConfigurationManager.ConfigurationPlugin";
+        private const string ConstantClassname = "Vukos.VisualStudio.ConfigurationManager.ConfigurationPlugin";
 
-        private const string Constant_LocalisedName_AllBuild = Constant_Classname + "." + Constant_AllBuild;
-        private const string Constant_LocalisedName_NoneBuild = Constant_Classname + "." + Constant_NoneBuild;
-        private const string Constant_LocalisedName_SelectBuild = Constant_Classname + "." + Constant_SelectBuild;
+        private const string ConstantLocalisedNameAllBuild = ConstantClassname + "." + ConstantAllBuild;
+        private const string ConstantLocalisedNameNoneBuild = ConstantClassname + "." + ConstantNoneBuild;
+        private const string ConstantLocalisedNameSelectBuild = ConstantClassname + "." + ConstantSelectBuild;
 #if DEBUG
-        private const string Constant_LocalisedName_ShowDummy = Constant_Classname + "." + Constant_ShowDummy;
+        private const string ConstantLocalisedNameShowDummy = ConstantClassname + "." + ConstantShowDummy;
 #endif
 
-        private const string Constant_AllBuild = "AllBuild";
-        private const string Constant_NoneBuild = "NoneBuild";
-        private const string Constant_SelectBuild = "SelectBuild";
+        private const string ConstantAllBuild = "AllBuild";
+        private const string ConstantNoneBuild = "NoneBuild";
+        private const string ConstantSelectBuild = "SelectBuild";
 #if DEBUG
-        private const string Constant_ShowDummy = "ShowDummy";
+        private const string ConstantShowDummy = "ShowDummy";
 #endif
 
         private DTE2 _applicationObject;
