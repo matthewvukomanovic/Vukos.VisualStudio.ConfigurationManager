@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VukosConfigurationManager", "VukosConfigurationManager\VukosConfigurationManager.csproj", "{54C786E5-FD14-4036-92AE-E9F25B71534B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vukos.VisualStudio.ConfigurationManager", "VukosConfigurationManager\Vukos.VisualStudio.ConfigurationManager.csproj", "{54C786E5-FD14-4036-92AE-E9F25B71534B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "TestApplication\TestApplication.csproj", "{FE8BB8DF-9F18-48F1-91CD-87839D8CDD1E}"
 EndProject

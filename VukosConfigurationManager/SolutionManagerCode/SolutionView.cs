@@ -5,12 +5,12 @@ using System.Text;
 using System.ComponentModel;
 using System.Linq.Expressions;
 using EnvDTE;
-using VukosConfigurationManager;
+using Vukos.VisualStudio.ConfigurationManager;
 using Vukos.Common;
 using System.Windows.Input;
 using System.Threading.Tasks;
 
-namespace VukosConfigurationManager
+namespace Vukos.VisualStudio.ConfigurationManager
 {
     public class SolutionView : SolutionViewBase
     {

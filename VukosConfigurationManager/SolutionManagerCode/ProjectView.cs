@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using EnvDTE;
 
-namespace VukosConfigurationManager
+namespace Vukos.VisualStudio.ConfigurationManager
 {
     public class ProjectView : ProjectViewBase
     {

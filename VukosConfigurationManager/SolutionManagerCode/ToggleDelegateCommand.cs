@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 
-namespace VukosConfigurationManager
+namespace Vukos.VisualStudio.ConfigurationManager
 {
 
     public abstract class ToggleDelegateCommandBase : ICommand

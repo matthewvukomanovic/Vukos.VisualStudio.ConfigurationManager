@@ -8,7 +8,7 @@
     <ProjectGuid>{FE8BB8DF-9F18-48F1-91CD-87839D8CDD1E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VukosConfigurationManager</RootNamespace>
+    <RootNamespace>Vukos.VisualStudio.ConfigurationManager</RootNamespace>
     <AssemblyName>TestApplication</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -89,9 +89,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VukosConfigurationManager\VukosConfigurationManager.csproj">
+    <ProjectReference Include="..\VukosConfigurationManager\Vukos.VisualStudio.ConfigurationManager.csproj">
       <Project>{54c786e5-fd14-4036-92ae-e9f25b71534b}</Project>
-      <Name>VukosConfigurationManager</Name>
+      <Name>Vukos.VisualStudio.ConfigurationManager</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

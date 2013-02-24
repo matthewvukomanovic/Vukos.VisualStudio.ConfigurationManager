@@ -10,7 +10,7 @@
     <StartupObject>
     </StartupObject>
     <NoStandardLibraries>false</NoStandardLibraries>
-    <AssemblyName>VukosConfigurationManager</AssemblyName>
+    <AssemblyName>Vukos.VisualStudio.ConfigurationManager</AssemblyName>
     <DeploymentDirectory>.\bin\</DeploymentDirectory>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile />
@@ -24,7 +24,7 @@
     <WarningLevel>4</WarningLevel>
     <IncrementalBuild>false</IncrementalBuild>
     <Prefer32Bit>false</Prefer32Bit>
-    <DocumentationFile>bin\Debug\VukosConfigurationManager.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Vukos.VisualStudio.ConfigurationManager.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -35,10 +35,10 @@
     <WarningLevel>4</WarningLevel>
     <IncrementalBuild>false</IncrementalBuild>
     <Prefer32Bit>false</Prefer32Bit>
-    <DocumentationFile>bin\Release\VukosConfigurationManager.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Vukos.VisualStudio.ConfigurationManager.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <RootNamespace>VukosConfigurationManager</RootNamespace>
+    <RootNamespace>Vukos.VisualStudio.ConfigurationManager</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition="Exists('..\localkeys\VukosConfigurationManager.snk')">
     <SignAssembly>true</SignAssembly>

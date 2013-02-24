@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace VukosConfigurationManager.Dummy
+namespace Vukos.VisualStudio.ConfigurationManager.Dummy
 {
     public static class CreateDummy
     {
@@ -41,7 +41,7 @@ namespace VukosConfigurationManager.Dummy
 
         public static void ShowDummy()
         {
-            VukosConfigurationManager.ConfigurationWindow.Show(CreateSolution());
+            Vukos.VisualStudio.ConfigurationManager.ConfigurationWindow.Show(CreateSolution());
         }
     }
 }

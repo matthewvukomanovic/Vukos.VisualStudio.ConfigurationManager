@@ -4,9 +4,8 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows;
-using VukosConfigurationManager;
 
-namespace VukosConfigurationManager
+namespace Vukos.VisualStudio.ConfigurationManager
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -16,7 +15,7 @@ namespace VukosConfigurationManager
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            VukosConfigurationManager.Dummy.CreateDummy.ShowDummy();
+            Vukos.VisualStudio.ConfigurationManager.Dummy.CreateDummy.ShowDummy();
         }
     }
 }

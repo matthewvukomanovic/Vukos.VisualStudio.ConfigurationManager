@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace VukosConfigurationManager
+namespace Vukos.VisualStudio.ConfigurationManager
 {
     public abstract class ProjectViewBase : ViewModelBase, IProjectView
     {

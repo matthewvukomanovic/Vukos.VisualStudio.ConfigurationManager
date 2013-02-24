@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using VukosConfigurationManager;
+using Vukos.VisualStudio.ConfigurationManager;
 
-namespace VukosConfigurationManager
+namespace Vukos.VisualStudio.ConfigurationManager
 {
     public sealed class ProjectViewDummy : ProjectViewBase
     {

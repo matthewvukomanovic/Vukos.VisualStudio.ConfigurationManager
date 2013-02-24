@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using VukosConfigurationManager;
+using Vukos.VisualStudio.ConfigurationManager;
 using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
-namespace VukosConfigurationManager
+namespace Vukos.VisualStudio.ConfigurationManager
 {
     public sealed class SolutionViewDummy : SolutionViewBase
     {

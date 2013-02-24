@@ -7,7 +7,7 @@ using System.Resources;
 using System.Reflection;
 using System.Globalization;
 
-namespace VukosConfigurationManager
+namespace Vukos.VisualStudio.ConfigurationManager
 {
     /// <summary>The object for implementing an Add-in.</summary>
     /// <seealso class='IDTExtensibility2' />
@@ -195,7 +195,7 @@ namespace VukosConfigurationManager
 
         private void ShowConfigurationWindowDummy()
         {
-            VukosConfigurationManager.Dummy.CreateDummy.ShowDummy();
+            Vukos.VisualStudio.ConfigurationManager.Dummy.CreateDummy.ShowDummy();
         }
 
         private void SetConfigurationValues(bool buildProjects)
@@ -213,7 +213,7 @@ namespace VukosConfigurationManager
             }
         }
 
-        private const string Constant_Classname = "VukosConfigurationManager.ConfigurationPlugin";
+        private const string Constant_Classname = "Vukos.VisualStudio.ConfigurationManager.ConfigurationPlugin";
 
         private const string Constant_LocalisedName_AllBuild = Constant_Classname + "." + Constant_AllBuild;
         private const string Constant_LocalisedName_NoneBuild = Constant_Classname + "." + Constant_NoneBuild;

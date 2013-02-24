@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-namespace VukosConfigurationManager
+namespace Vukos.VisualStudio.ConfigurationManager
 {
     public interface IProjectView : INotifyPropertyChanged
     {

@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace VukosConfigurationManager
+namespace Vukos.VisualStudio.ConfigurationManager
 {
     /// <summary>
     /// Interaction logic for ConfigurationWindow.xaml
@@ -26,7 +26,7 @@ namespace VukosConfigurationManager
 
         public static void Show(ISolutionView solution)
         {
-            VukosConfigurationManager.ConfigurationWindow w = new VukosConfigurationManager.ConfigurationWindow() { DataContext = solution };
+            Vukos.VisualStudio.ConfigurationManager.ConfigurationWindow w = new Vukos.VisualStudio.ConfigurationManager.ConfigurationWindow() { DataContext = solution };
             w.Show();
         }
 
