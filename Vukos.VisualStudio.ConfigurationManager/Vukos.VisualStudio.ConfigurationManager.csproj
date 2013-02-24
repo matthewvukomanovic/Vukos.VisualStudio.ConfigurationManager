@@ -156,11 +156,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\1.bmp" />
-    <Content Include="VukosConfigurationManager.AddIn">
+    <Content Include="Vukos.VisualStudio.ConfigurationManager.AddIn">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="..\localaddin\VukosConfigurationManager  - For Testing.AddIn">
-      <Link>VukosConfigurationManager - For Testing.AddIn</Link>
+    <Content Include="..\localaddin\Vukos.VisualStudio.ConfigurationManager - For Testing.AddIn">
+      <Link>Vukos.VisualStudio.ConfigurationManager - For Testing.AddIn</Link>
     </Content>
   </ItemGroup>
   <ItemGroup>
