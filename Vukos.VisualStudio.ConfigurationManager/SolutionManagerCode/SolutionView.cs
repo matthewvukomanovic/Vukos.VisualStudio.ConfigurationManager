@@ -22,7 +22,7 @@ namespace Vukos.VisualStudio.ConfigurationManager
 
         #region Properties
 
-        public override System.Windows.Input.ICommand SetActiveConfiguration
+        public override ICommand SetActiveConfiguration
         {
             get
             {
@@ -134,11 +134,11 @@ namespace Vukos.VisualStudio.ConfigurationManager
 
         #endregion
 
-        Suppression refreshSuppression = new Suppression();
+        private readonly Suppression _refreshSuppression = new Suppression();
 
         private void RefreshAllSolutionValues(bool refreshAll)
         {
-            refreshSuppression.Run(() =>
+            _refreshSuppression.Run(() =>
             {
                 if (_solution == null || _solution.SolutionBuild == null || _solution.SolutionBuild.ActiveConfiguration == null)
                 {
@@ -149,15 +149,12 @@ namespace Vukos.VisualStudio.ConfigurationManager
                 }
                 else
                 {
-                    List<string> configurations = new List<string>();
-                    List<string> platforms = new List<string>();
+                    var configurations = new List<string>();
+                    var platforms = new List<string>();
                     foreach (SolutionConfiguration config in _solution.SolutionBuild.SolutionConfigurations)
                     {
                         configurations.Add(config.Name);
-                        foreach (SolutionContext context in config.SolutionContexts)
-                        {
-                            platforms.Add(context.PlatformName);
-                        }
+                        platforms.AddRange(from SolutionContext context in config.SolutionContexts select context.PlatformName);
                     }
 
                     Configurations = configurations.Distinct();
@@ -166,12 +163,11 @@ namespace Vukos.VisualStudio.ConfigurationManager
                         _selectedConfiguration = _solution.SolutionBuild.ActiveConfiguration.Name;
                     }
 
-                    string active_config = (string)_solution.Properties.Item("ActiveConfig").Value;
-
-                    bool platformSet = false;
-                    if (!string.IsNullOrEmpty(active_config))
+                    var platformSet = false;
+                    var activeConfig = (string)_solution.Properties.Item("ActiveConfig").Value;
+                    if (!string.IsNullOrEmpty(activeConfig))
                     {
-                        var splitConfig = active_config.Split('|');
+                        var splitConfig = activeConfig.Split('|');
                         if (splitConfig.Length == 2)
                         {
                             _activePlatform = splitConfig[1];
@@ -186,20 +182,21 @@ namespace Vukos.VisualStudio.ConfigurationManager
 
                     Platforms = platforms.Distinct();
 
-                    SolutionConfiguration configuration = _solution.SolutionBuild.SolutionConfigurations.Item(_selectedConfiguration);
+                    var configuration = _solution.SolutionBuild.SolutionConfigurations.Item(_selectedConfiguration);
                     if (configuration == null || configuration.SolutionContexts == null)
                     {
                         Projects = null;
                         return;
                     }
 
-                    List<IProjectView> projects = new List<IProjectView>(configuration.SolutionContexts.Count);
-                    foreach (SolutionContext solContext in configuration.SolutionContexts)
+                    // If the active configuration is the same as the selected configuration then use that as the value
+                    if( _solution.SolutionBuild.ActiveConfiguration != null && configuration.Name == _solution.SolutionBuild.ActiveConfiguration.Name)
                     {
-                        var projectView = new ProjectView() { Solution = _solution, Context = solContext };
-                        projectView.IsSelected = false;
-                        projects.Add(projectView);
+                        configuration = _solution.SolutionBuild.ActiveConfiguration;
                     }
+
+                    var projects = new List<IProjectView>(configuration.SolutionContexts.Count);
+                    projects.AddRange((from SolutionContext solContext in configuration.SolutionContexts select new ProjectView {Solution = _solution, Context = solContext, IsSelected = false}));
                     projects.Sort((x, y) => string.Compare(x.Name, y.Name));
                     Projects = projects;
                 }
