@@ -1,19 +1,45 @@
+= Initial setup =
+== Create Junctions ==
+The project uses local junction folders to point to different local/network folders.
+This has been done because multiple people (or even a single person on different computers) wanting to code at the same time causes some issues for the handling of the files
+
+So get the path to your local/remote documents directory, ''NOTE: this can be different, you'll want to the remote one most likely''
+
 The easiest way that i have found to do this is to create a juction to my "Documents folder" like so:
 * junction "XXXSOME PATH TO YOUR USERNAME FOLDER XXX\Documents" localdocuments
 
 Then create one which is either to vs 2012 or 2010 depending on what you are working with
 * junction "localdocuments\Visual Studio 2010\Addins" localaddin
 or
-* junction "localdocuments\Visual Studio 2010\Addins" localaddin
+* junction "localdocuments\Visual Studio 2012\Addins" localaddin
 
+== Copy the add-in to the documents folder ==
+Run the command Vukos.VisualStudio.ConfigurationManager\createtestingaddin.bat
+which copies the addin to the path that is needed so that visual studios can see it.
 
+== Change starup properties of Project ==
 Change the start properties to start a version of visual studio (2010 or 2012) and send this command line arg
 * C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\devenv.exe
 or
 * C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\devenv.exe
 
-You need to change the path to the correct path for you
+You need to change the path to the correct path for your installation of visual studio
 
 * /resetaddin Vukos.VisualStudio.ConfigurationManager.ConfigurationPlugin
 
 Set the working path to the visual studio path
+
+= Installing =
+You need to build the solution and then it should all just work.
+
+== Special Note ==
+If you are trying to change the plug-in while it is loaded in the ide, then you will probably come across a problem.
+What i have often done to get around this is to close the ide's that i have open, delete the add-in and then open this project and build it.
+Copy the add-in back into the localaddin folder.
+Run a debug version like normal.
+
+Once done it should all be back to normal.
+
+== Second Note ==
+This isn't actually what i would consider really installing the plug-in properly. However I'll get around to writting the instructions correctly when i'm not going to rush off to play tennis :)
+
