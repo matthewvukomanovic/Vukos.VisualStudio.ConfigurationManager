@@ -184,7 +184,13 @@
     <ItemGroup>
       <AllOutputFiles Include="$(OutputPath)*.*" />
     </ItemGroup>
+    <ItemGroup>
+      <SelectOutputFiles Include="$(OutputPath)$(TargetName).*" />
+    </ItemGroup>
     <Copy SourceFiles="@(AllOutputFiles)" DestinationFiles="@(AllOutputFiles->'$(DeploymentDirectory)\%(Filename)%(Extension)')">
+      <Output TaskParameter="DestinationFiles" ItemName="FileWrites" />
+    </Copy>
+    <Copy Condition="Exists('$(SolutionDir)\localaddin')" SourceFiles="@(SelectOutputFiles)" DestinationFiles="@(SelectOutputFiles->'$(SolutionDir)\localaddin\%(Filename)%(Extension)')">
       <Output TaskParameter="DestinationFiles" ItemName="FileWrites" />
     </Copy>
   </Target>
