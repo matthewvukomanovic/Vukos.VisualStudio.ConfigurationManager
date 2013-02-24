@@ -89,7 +89,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VukosConfigurationManager\Vukos.VisualStudio.ConfigurationManager.csproj">
+    <ProjectReference Include="..\Vukos.VisualStudio.ConfigurationManager\Vukos.VisualStudio.ConfigurationManager.csproj">
       <Project>{54c786e5-fd14-4036-92ae-e9f25b71534b}</Project>
       <Name>Vukos.VisualStudio.ConfigurationManager</Name>
     </ProjectReference>
