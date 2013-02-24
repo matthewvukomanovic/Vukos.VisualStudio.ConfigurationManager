@@ -1,0 +1,19 @@
+The easiest way that i have found to do this is to create a juction to my "Documents folder" like so:
+* junction "XXXSOME PATH TO YOUR USERNAME FOLDER XXX\Documents" localdocuments
+
+Then create one which is either to vs 2012 or 2010 depending on what you are working with
+* junction "localdocuments\Visual Studio 2010\Addins" localaddin
+or
+* junction "localdocuments\Visual Studio 2010\Addins" localaddin
+
+
+Change the start properties to start a version of visual studio (2010 or 2012) and send this command line arg
+* C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\devenv.exe
+or
+* C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\devenv.exe
+
+You need to change the path to the correct path for you
+
+* /resetaddin Vukos.VisualStudio.ConfigurationManager.ConfigurationPlugin
+
+Set the working path to the visual studio path
