@@ -12,10 +12,10 @@ using System.Threading.Tasks;
 
 namespace Vukos.VisualStudio.ConfigurationManager
 {
-    public class SolutionView : SolutionViewBase
+    public class SolutionViewModel : SolutionViewModelBase
     {
 
-        public SolutionView() : base()
+        public SolutionViewModel() : base()
         {
             _setActiveConfiguration = new ToggleDelegateCommand(SetActiveConfigurationMethod);
         }
@@ -195,8 +195,8 @@ namespace Vukos.VisualStudio.ConfigurationManager
                         configuration = _solution.SolutionBuild.ActiveConfiguration;
                     }
 
-                    var projects = new List<IProjectView>(configuration.SolutionContexts.Count);
-                    projects.AddRange((from SolutionContext solContext in configuration.SolutionContexts select new ProjectView {Solution = _solution, Context = solContext, IsSelected = false}));
+                    var projects = new List<IProjectViewModel>(configuration.SolutionContexts.Count);
+                    projects.AddRange((from SolutionContext solContext in configuration.SolutionContexts select new ProjectViewModel {Solution = _solution, Context = solContext, IsSelected = false}));
                     projects.Sort((x, y) => string.Compare(x.Name, y.Name));
                     Projects = projects;
                 }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Vukos.VisualStudio.ConfigurationManager
 {
-    public abstract class ProjectViewBase : ViewModelBase, IProjectView
+    public abstract class ProjectViewModelBase : ViewModelBase, IProjectViewModel
     {
         #region IsSelected
 

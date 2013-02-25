@@ -8,7 +8,7 @@ using EnvDTE;
 
 namespace Vukos.VisualStudio.ConfigurationManager
 {
-    public class ProjectView : ProjectViewBase
+    public class ProjectViewModel : ProjectViewModelBase
     {
         #region Properties
 

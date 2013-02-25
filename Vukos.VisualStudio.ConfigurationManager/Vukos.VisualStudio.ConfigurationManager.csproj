@@ -82,18 +82,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SolutionManagerCode\Dummy\CreateDummy.cs" />
-    <Compile Include="SolutionManagerCode\Dummy\ProjectViewDummy.cs" />
-    <Compile Include="SolutionManagerCode\Dummy\SolutionViewDummy.cs" />
-    <Compile Include="SolutionManagerCode\IProjectView.cs" />
-    <Compile Include="SolutionManagerCode\ISolutionView.cs" />
-    <Compile Include="SolutionManagerCode\ProjectView.cs" />
+    <Compile Include="SolutionManagerCode\Dummy\ProjectViewModelDummy.cs" />
+    <Compile Include="SolutionManagerCode\Dummy\SolutionViewModelDummy.cs" />
+    <Compile Include="SolutionManagerCode\IProjectViewModel.cs" />
+    <Compile Include="SolutionManagerCode\ISolutionViewModel.cs" />
+    <Compile Include="SolutionManagerCode\ProjectViewModel.cs" />
     <Compile Include="ConfigurationPlugin.cs" />
     <Compile Include="SolutionManagerCode\ConfigurationWindow.xaml.cs">
       <DependentUpon>ConfigurationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SolutionManagerCode\ProjectViewBase.cs" />
-    <Compile Include="SolutionManagerCode\SolutionView.cs" />
-    <Compile Include="SolutionManagerCode\SolutionViewBase.cs" />
+    <Compile Include="SolutionManagerCode\ProjectViewModelBase.cs" />
+    <Compile Include="SolutionManagerCode\SolutionViewModel.cs" />
+    <Compile Include="SolutionManagerCode\SolutionViewModelBase.cs" />
     <Compile Include="SolutionManagerCode\Suppression.cs" />
     <Compile Include="SolutionManagerCode\ToggleDelegateCommand.cs" />
     <Compile Include="SolutionManagerCode\ViewModelBase.cs" />

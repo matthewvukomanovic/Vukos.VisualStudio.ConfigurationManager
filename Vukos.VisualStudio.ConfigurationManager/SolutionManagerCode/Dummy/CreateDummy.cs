@@ -7,15 +7,15 @@ namespace Vukos.VisualStudio.ConfigurationManager.Dummy
 {
     public static class CreateDummy
     {
-        public static ISolutionView CreateSolution()
+        public static ISolutionViewModel CreateSolution()
         {
-            SolutionViewDummy solution = new SolutionViewDummy();
+            SolutionViewModelDummy solution = new SolutionViewModelDummy();
             solution.SelectedConfiguration = "Debug";
             solution.Configurations = new List<string>() { "Debug", "Release" };
             solution.ActivePlatform = "Mixed CPUs";
             solution.Platforms = new List<string>() { "Mixed CPUs", "x86", "64" };
 
-            List<IProjectView> projects = new List<IProjectView>();
+            List<IProjectViewModel> projects = new List<IProjectViewModel>();
 
             Random rand = new Random(0);
 
@@ -23,7 +23,7 @@ namespace Vukos.VisualStudio.ConfigurationManager.Dummy
 
             for (int i = 0; i < 20; i++)
             {
-                ProjectViewDummy p = new ProjectViewDummy();
+                ProjectViewModelDummy p = new ProjectViewModelDummy();
                 p.ConfigurationName = "Debug";
                 p.NameSet = "Project " + randomWords[rand.Next(randomWords.Length)] + " " + i.ToString();
                 p.PlatformNameSet = "x86";

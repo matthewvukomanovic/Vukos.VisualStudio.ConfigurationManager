@@ -187,7 +187,7 @@ namespace Vukos.VisualStudio.ConfigurationManager
                 return;
             }
 
-            var solutionView = new SolutionView() { Solution = solution };
+            var solutionView = new SolutionViewModel() { Solution = solution };
 
             ConfigurationWindow.Show(solutionView);
         }

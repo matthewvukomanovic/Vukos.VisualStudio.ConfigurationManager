@@ -2,7 +2,7 @@
 using System.ComponentModel;
 namespace Vukos.VisualStudio.ConfigurationManager
 {
-    public interface IProjectView : INotifyPropertyChanged
+    public interface IProjectViewModel : INotifyPropertyChanged
     {
         string ConfigurationName { get; set; }
         string Name { get; }

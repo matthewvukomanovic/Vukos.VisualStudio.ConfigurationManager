@@ -6,9 +6,9 @@ using System.Windows.Input;
 
 namespace Vukos.VisualStudio.ConfigurationManager
 {
-    public abstract class SolutionViewBase : ViewModelBase, ISolutionView
+    public abstract class SolutionViewModelBase : ViewModelBase, ISolutionViewModel
     {
-        public SolutionViewBase()
+        public SolutionViewModelBase()
         {
             ToggleBuild = new ToggleDelegateCommand(ToggleSelectedBuilds);
             ToggleDeploy = new ToggleDelegateCommand(ToggleSelectedDeploys);
@@ -24,9 +24,9 @@ namespace Vukos.VisualStudio.ConfigurationManager
         /// <summary>
         /// A backing store for the property <see cref="Projects"/>
         /// </summary>
-        private IList<IProjectView> _projects;
+        private IList<IProjectViewModel> _projects;
 
-        public IList<IProjectView> Projects
+        public IList<IProjectViewModel> Projects
         {
             get { return _projects; }
             set

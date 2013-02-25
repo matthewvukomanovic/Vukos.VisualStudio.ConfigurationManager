@@ -8,7 +8,7 @@ using Vukos.VisualStudio.ConfigurationManager;
 
 namespace Vukos.VisualStudio.ConfigurationManager
 {
-    public sealed class ProjectViewDummy : ProjectViewBase
+    public sealed class ProjectViewModelDummy : ProjectViewModelBase
     {
         #region ConfigurationName
 
